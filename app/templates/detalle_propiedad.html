@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+
+{% block title %} {{propiedad.nombre}} {% endblock %}
+{% load static %}a
+{% block content %}
+<div class="page-heading header-text">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <span class="breadcrumb"><a href="{% url 'index' %}">Home</a> / Single Property</span>
+                <h3>{{propiedad.nombre}}</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="single-property section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="main-image">
+                    <img src="/media/{{propiedad.imagen}}">
+                </div>
+                <div class="main-content">
+                    <span class="category">{{propiedad.tipo_de_propiedad}}</span>
+                    <h4>{{propiedad.direccion}}</h4>
+                    <p>
+                        {{propiedad.descripcion}}
+                    </p>
+                </div>
+
+            </div>
+            <div class="col-lg-4">
+                <div class="info-table">
+                    <ul>
+                        <li>
+                            <img src="assets/images/info-icon-01.png" alt="" style="max-width: 52px;">
+                            <h4>{{propiedad.m2_construidos}} m2<br><span>Metros construidos</span></h4>
+                        </li> 
+                        <li>
+                            <img src="assets/images/info-icon-02.png" alt="" style="max-width: 52px;">
+                            <h4>Contract<br><span>Disponible</span></h4>
+                        </li>
+                        <li>
+                            <img src="assets/images/info-icon-03.png" alt="" style="max-width: 52px;">
+                            <h4>Medio de pago<br><span>Payment Process</span></h4>
+                        </li>
+                        <li>
+                            <img src="assets/images/info-icon-04.png" alt="" style="max-width: 52px;">
+                            <h4>Seguridad<br><span>24/7 Under Control</span></h4>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

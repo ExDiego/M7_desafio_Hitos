@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,8 +26,14 @@ SECRET_KEY = 'django-insecure-()m*o%w*v#uy^htep4(3qotfpuz00b45gutc7b@b$*ifzw(^#7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*','https://8000-idx-portal-inmobiliario-1716507814956.cluster-vpxjqdstfzgs6qeiaf7rdlsqrc.cloudworkstations.dev/']
+CSRF_TRUSTED_ORIGINS = ['https://8000-idx-portal-inmobiliario-1716507814956.cluster-vpxjqdstfzgs6qeiaf7rdlsqrc.cloudworkstations.dev']
 
+AUTH_USER_MODEL = 'app.Usuario'
+
+LOGIN_REDIRECT_URL = 'index'
+LOGIN_URL = 'login'  # URL a la que se redirige si un usuario no está autenticado y trata de acceder a una vista protegida
+LOGOUT_REDIRECT_URL = 'login'
 
 # Application definition
 
@@ -70,7 +77,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'inmobiliaria.wsgi.application'
 
-AUTH_USER_MODEL = 'app.Usuario'
+
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -78,7 +85,7 @@ AUTH_USER_MODEL = 'app.Usuario'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'databasem7',
+        'NAME': 'dbm7',
         'USER': 'postgres',
         'PASSWORD':'1234',
         'HOST':'localhost',
@@ -121,7 +128,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = 'static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = 'media'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'app/templates/static'),
+)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

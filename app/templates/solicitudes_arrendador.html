@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Página de Inicio{% endblock %}
+{% load static %}
+{% block content %}
+<h1>Solicitudes Recibidas</h1>
+<ul>
+    {% for solicitud in solicitudes %}
+    <li>
+        <p>Arrendatario: {{ solicitud.arrendatario }}</p>
+        <p>Propiedad: {{ <solicitud class="propiedad"></solicitud> }}</p>
+        <p>Mensaje: {{ solicitud.mensaje }}</p>
+    </li>
+    {% empty %}
+    <li>No hay solicitudes recibidas.</li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}

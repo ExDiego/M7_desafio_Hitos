@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h2>Dashboard - Arrendatario</h2>
+<form method="GET" action="{% url 'dashboard' %}">
+    <label for="region">Región:</label>
+    <select name="region" id="region">
+        <option value="">Seleccionar Región</option>
+        {% for region in regiones %}
+        <option value="{{ region.id }}">{{ region.nombre }}</option>
+        {% endfor %}
+    </select>
+    <label for="comuna">Comuna:</label>
+    <select name="comuna" id="comuna">
+        <option value="">Seleccionar Comuna</option>
+        {% for comuna in comunas %}
+            <option value="{{ comuna.id }}">{{ comuna.nombre }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Filtrar</button>
+</form>
+<h3>Propiedades Disponibles:</h3>
+<ul>
+    <section class="container mx-auto pt-5">
+        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4">
+            {% for inm in propiedades %}
+            <div class="col">
+                <div class="card h-100">
+                    <img class="card-img-top" src="/media/{{inm.imagen}}" alt="Card image cap">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ inm.name }}</h5>
+                        <h4 class="card-title">{{ inm.direccion }}, {{ inm.comuna }}</h4>
+                        <p class="card-text text-justify">
+                            {% if inm.descripcion|length > 10 %}
+                            {{ inm.descripcion|slice:":10" }}... <a href="">descripcion</a>
+                            {% else %}
+                            {{ inm.descripcion}}
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'detalle' inm.id %}">detalle del inmueble</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+</ul>
+<h3 class="m-5">Solicitudes de Arriendo:</h3>
+
+<section class="container mx-auto pt-5">
+    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4">
+        {% for solicitud in solicitudes %}
+        <div class="card mb-3 {% if solicitud.estado == 'aceptado' %}bg-success{% elif solicitud.estado == 'pendiente' %}bg-warning{% elif solicitud.estado == 'rechazado' %}bg-danger{% else %}bg-secondary{% endif %}"
+            style="max-width: 18rem;">
+        <div class=" card-header">{{solicitud.estado}}</div>
+        <div class="card-body">
+            <h5 class="card-title">{{ solicitud }}</h5>
+            <P>{{solicitud.mensaje}}</P>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+</section>
+{% endblock %}
