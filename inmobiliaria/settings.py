@@ -29,8 +29,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*','https://8000-idx-portal-inmobiliario-1716507814956.cluster-vpxjqdstfzgs6qeiaf7rdlsqrc.cloudworkstations.dev/', 'https://m7-desafio-hitos.onrender.com']
-CSRF_TRUSTED_ORIGINS = ['https://8000-idx-portal-inmobiliario-1716507814956.cluster-vpxjqdstfzgs6qeiaf7rdlsqrc.cloudworkstations.dev', 'https://m7-desafio-hitos.onrender.com']
+ALLOWED_HOSTS = ['*','m7-desafio-hitos.onrender.com']
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1', 'https://m7-desafio-hitos.onrender.com']
 
 AUTH_USER_MODEL = 'app.Usuario'
 
