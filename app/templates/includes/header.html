@@ -10,13 +10,15 @@
             </div>
             <div class="col-lg-4 col-md-4">
                 <ul class="social-links">
-                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                    <li><a href="https://x.com/minthu" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <div>
+                        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                        <li><a href="https://x.com/minthu" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    </div>
                     {% if user.is_authenticated %}
-                    <p class="d-inline">bienvenido {{ user.username }}</p>
-                    <a class="nav-link d-inline" href="{% url 'actualizar_usuario' %}">Perfil</a>
+                    <p class="d-inline ms-3 mt-2">Bienvenido {{ user.username }}</p>
+                    <!-- <a class="nav-link d-inline" href="{% url 'actualizar_usuario' %}">Perfil</a> -->
                     <form action="{% url 'logout' %}" method="post">
                         {% csrf_token %}
                         <button data-mdb-ripple-init type="submit" class="btn btn-outline">
@@ -24,8 +26,10 @@
                         </button>
                     </form>
                     {% else %}
+                    <div class="mt-2">
                     <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
                     <a class="nav-link" href="{% url 'registro_usuario' %}">Registro</a>
+                    </div>
                     {% endif %}
                 </ul>
             </div>
